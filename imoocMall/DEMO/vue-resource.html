@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rsource</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue-resource/dist/vue-resource.js"></script>
+</head>
+<body>
+<div id="app" class="container">
+  <h1>resource</h1>
+  <a href="javascript:;" class="btn btn-primary" v-on:click="get">GET请求</a>
+  <a href="javascript:;" class="btn btn-primary" @click="post">POST请求</a>
+  <a href="javascript:;" class="btn btn-primary" @click="jsonp">JSONP请求</a>
+  <a href="javascript:;" class="btn btn-primary" @click="http">http请求</a>
+  <div>{{msg}}</div>
+</div>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      msg:''
+    },
+    mounted:function(){
+      Vue.http.interceptors.push(function(request,next){
+        console.log('request init')
+        next(function(response){
+          console.log('request init1')
+          return response;
+        });
+
+      });
+    },
+    http:{
+      root:'http://localhost:63342/nodejs/imoocMall/'
+    },
+    methods:{
+      get:function () {
+        this.$http.get('package.json',{
+          params:{
+            userId:'101'
+          },
+          headers:{
+            token:'abcd'
+          }
+        }).then(res=>{
+          this.msg = res.data;
+        },error=>{
+          this.msg = error;
+        })
+      },
+      post:function () {
+        this.$http.post('../package.json',{
+          params:{
+            userId:'101'
+          },
+          headers:{
+            token:'abcd'
+          }
+        }).then(res=>{
+          this.msg = res.data;
+        },error=>{
+          this.msg = error;
+        })
+      },
+      http:function () {
+        this.$http({
+          url:'../package.json',
+          method:'GET',
+          params:{
+            userId:'101'
+          },
+          headers:{
+            token:'abcd'
+          },
+          timeout:5,
+          before:function(){
+            console.log('before init')
+          }
+        }).then(res=>{
+          this.msg = res.data;
+        },error=>{
+          this.msg = error;
+        })
+      },
+      jsonp:function () {
+        this.$http.jsonp('https://www.imooc.com/course/AjaxCourseMembers?ids=796').then(res=>{
+          this.msg = res.data;
+        },error=>{
+          this.msg = error;
+        })
+      }
+    }
+  })
+</script>
+</body>
+</html>

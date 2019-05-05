@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  .log{
+    background: black;
+    color: #fff;
+    padding: 4px;
+  }
+</style>
+<body>
+<div id="log" class="log"></div>
+<script>
+  var str = `
+    console.log('a'+a)
+     let a = 1;
+  a = 2
+  const b =2;
+  //b=3;
+  const c = {a:1}
+  c.a = 4;
+  var arr = [3,6,9]
+  var newArr = arr.map(function(item){
+    return item + 2;
+  })
+  console.log(newArr)
+  var newArr1 = arr.map((item)=>item+2)
+  console.log(newArr1)
+  `
+ //数组的结构
+  var [a,b,c] = [1,2,3] //数组的拆分
+  var [x,y,z] = 'vue' //字符串的拆分
+  var {m,n} = {m:10,n:20}
+
+
+
+  print(str)
+  function print(str) {
+    document.getElementById('log').innerHTML = str
+
+  }
+</script>
+</body>
+</html>
