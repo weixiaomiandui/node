@@ -117,7 +117,12 @@
       }
     },
     mounted(){
-      this.getGoodsList();
+      axios.get("/goods").then((response)=>{
+        var res = response.data;
+        console.log(res)
+
+      });
+      //this.getGoodsList();
     },
     components:{
       NavHeader,
