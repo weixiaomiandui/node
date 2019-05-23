@@ -88,7 +88,7 @@
         goodsList:[],
         sortFlag:true,
         page:1,
-        pageSize:8,
+        pageSize:20,
         busy:true,
         loading:false,
         mdShow:false,
@@ -117,12 +117,12 @@
       }
     },
     mounted(){
-      axios.get("/goods").then((response)=>{
+      /*axios.get("/goods").then((response)=>{
         var res = response.data;
         console.log(res)
 
-      });
-      //this.getGoodsList();
+      });*/
+      this.getGoodsList();
     },
     components:{
       NavHeader,
@@ -139,7 +139,7 @@
           priceLevel:this.priceChecked
         };
         this.loading = true;
-        axios.get("/goods/list",{
+        axios.get("/goods",{
           params:param
         }).then((response)=>{
           var res = response.data;
