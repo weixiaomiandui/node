@@ -125,8 +125,8 @@
       this.getGoodsList();
     },
     components:{
-      NavHeader,
       NavFooter,
+      NavHeader,
       NavBread,
       Modal
     },
@@ -139,7 +139,7 @@
           priceLevel:this.priceChecked
         };
         this.loading = true;
-        axios.get("/goods",{
+        axios.get("/goods/list",{
           params:param
         }).then((response)=>{
           var res = response.data;

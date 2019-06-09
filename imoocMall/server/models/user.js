@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 var userSchema = new mongoose.Schema({
   "userId":String,
   "userName":String,
@@ -8,13 +9,22 @@ var userSchema = new mongoose.Schema({
     {
       "productId":String,
       "productName":String,
-      "salePrice":Number,
+      "salePrice":String,
       "productImage":String,
       "checked":String,
-      "productNum":Number
+      "productNum":String
     }
   ],
-  "addresslist":Array
+  "addressList":[
+    {
+      "addressId": String,
+      "userName": String,
+      "streetName": String,
+      "postCode": Number,
+      "tel": Number,
+      "isDefault": Boolean
+    }
+  ]
 });
 
-module.exports = mongoose.model('User',userSchema)
+module.exports = mongoose.model("User",userSchema);
