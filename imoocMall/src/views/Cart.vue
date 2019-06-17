@@ -234,7 +234,7 @@
           if(res.status == '0'){
             this.modalConfirm = false;
             this.init();
-            this.$store.commit("updateCartCount",-this.delItem.productNum);
+            this.$store.dispatch("updateCart",-this.delItem.productNum);
           }
         });
       },
@@ -262,7 +262,7 @@
           }else if(flag=='minu'){
             num = -1;
           }
-          this.$store.commit("updateCartCount",num);
+          this.$store.dispatch("updateCart",num);
         })
       },
       toggleCheckAll(){

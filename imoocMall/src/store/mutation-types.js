@@ -1,0 +1,3 @@
+export const UPDATE_USERINFO = 'UPDATE_USERINFO'
+export const UPDATE_CART = 'UPDATE_CART'
+export const INIT_CARTCOUNT = 'INIT_CARTCOUNT'

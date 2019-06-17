@@ -6,6 +6,7 @@ import router from './router'
 import VueLazyload from 'vue-lazyload'
 import infiniteScroll from  'vue-infinite-scroll'
 import {sum,minus} from './util'
+import store from './store';
 Vue.config.productionTip = false
 Vue.use(infiniteScroll);
 Vue.use(VueLazyload, {
@@ -19,6 +20,7 @@ import './assets/css/product.css'
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -157,15 +157,15 @@
         loginModalFlag:false
       }
     },
-    /*computed:{
+    computed:{
       ...mapState(['nickName','cartCount'])
-      /!*nickName(){
-        return this.$store.state.nickName;
+      /*nickName(){
+        return this.$store.state.cart.nickName;
       },
       cartCount(){
-        return this.$store.state.cartCount;
-      }*!/
-    },*/
+        /!*return this.$store.state.cartCount;*!/
+      }*/
+    },
     mounted(){
       /* this.checkLogin();*/
     },
@@ -176,7 +176,7 @@
           var path = this.$route.pathname;
           if(res.status=="0"){
 //                      this.nickName = res.result.userName;
-            this.$store.commit("updateUserInfo",res.result);
+            this.$store.dispatch("updateUserInfo",res.result);
             this.getCartCount();
             this.loginModalFlag = false;
           }else{
@@ -200,7 +200,7 @@
           if(res.status=="0"){
             this.errorTip = false;
             this.loginModalFlag = false;
-            this.$store.commit("updateUserInfo",res.result.userName);
+            this.$store.dispatch("updateUserInfo",res.result.userName);
             this.getCartCount();
           }else{
             this.errorTip = true;
@@ -219,7 +219,7 @@
       getCartCount(){
         axios.get("/users/getCartCount").then((response)=>{
           let res = response.data;
-          this.$store.commit("initCartCount",res.result);
+          this.$store.dispatch("initCartCount",res.result);
         });
       }
     }
